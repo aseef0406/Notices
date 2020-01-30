@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+        <title>Alumini Tracking by sihcseb</title>
+        {% load static %}
+        <link type="text/css" rel="stylesheet" href="{% static 'css/style1.css' %}">
+
+
+    </head>
+<body data-spy="scroll" data-target=".navbar" data-offset="50">
+<div class="bg">
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" >
+      <div class="container">
+              <a class="navbar-brand" href="#">
+                  <img src="{%static 'images/goa-logo.jpg'%}" height="30" class="d-inline-block align-top"
+                        alt="mdb logo">
+                  Government Of Goa
+              </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item ">
+                <a class="nav-link" href="#home">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#news">News</a>
+              </li>
+               <li class="nav-item">
+                <a class="nav-link" href="contact.html">Contacts</a>
+              </li>
+            </ul>
+          </div>
+      </div>
+    </nav>
+
+    <div class="container-fluid " style="padding:40px;">
+        <div class="row no-gutters" id="home">
+            <div class="col-lg-1"></div>
+            <div class="title col-lg-10 ml-center" style="color:#fff"><h1 class="display-4"><b>Welcome To Alumini Tracking Home Page</b></h1></div>
+        </div>
+        <div class="row" >
+            <div class="col-lg-9">
+                <div id="demo" class="carousel slide" data-ride="carousel">
+
+                  <!-- Indicators -->
+                  <ul class="carousel-indicators">
+                    <li data-target="#demo" data-slide-to="0" class="active"></li>
+                    <li data-target="#demo" data-slide-to="1"></li>
+                    <li data-target="#demo" data-slide-to="2"></li>
+                  </ul>
+
+                  <!-- The slideshow -->
+                  <div class="carousel-inner">
+                    <div class="carousel-item active">
+                      <img src="{%static 'images/la.jpg' %}" alt="Los Angeles" width="1100" height="500">
+                    </div>
+                    <div class="carousel-item">
+                      <img src="{%static 'images/chicago.jpg'%}"  alt="Chicago" width="1100" height="500">
+                    </div>
+                    <div class="carousel-item">
+                      <img src="{%static 'images/ny.jpg' %}" alt="New York" width="1100" height="500">
+                    </div>
+                  </div>
+
+                  <!-- Left and right controls -->
+                  <a class="carousel-control-prev" href="#demo" data-slide="prev">
+                    <span class="carousel-control-prev-icon"></span>
+                  </a>
+                  <a class="carousel-control-next" href="#demo" data-slide="next">
+                    <span class="carousel-control-next-icon"></span>
+                  </a>
+                </div>
+
+
+            </div>
+            <div class="col-lg-3" style="padding-top:70px;padding-bottom:70px">Alumini Page
+
+                  <form action="/alumini/login_process/" class="needs-validation" method="post">
+                      {% csrf_token %}
+                    <div class="form-group">
+                      <label for="uname">Username:</label>
+                      <input type="text" class="form-control" id="uname" placeholder="Enter username" name="username" required>
+                      <div class="valid-feedback">Valid.</div>
+                      <div class="invalid-feedback">Please fill out this field.</div>
+                    </div>
+                    <div class="form-group">
+                      <label for="pwd">Password:</label>
+                      <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="password" required>
+                      <div class="valid-feedback">Valid.</div>
+                      <div class="invalid-feedback">Please fill out this field.</div>
+                    </div>
+                    <div class="form-group form-check">
+                      <label class="form-check-label">
+                        <input class="form-check-input" type="checkbox" name="remember" required> I agree on Terms.
+                        <div class="valid-feedback">Valid.</div>
+                        <div class="invalid-feedback">Check this checkbox to continue.</div>
+                      </label>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                     <br>
+                     <label>Didn't Register <a href="{% url 'register'%}">click here</a></label>
+                  </form>
+                </div>
+
+                <script>
+                // Disable form submissions if there are invalid fields
+                (function() {
+                  'use strict';
+                  window.addEventListener('load', function() {
+                    // Get the forms we want to add validation styles to
+                    var forms = document.getElementsByClassName('needs-validation');
+                    // Loop over them and prevent submission
+                    var validation = Array.prototype.filter.call(forms, function(form) {
+                      form.addEventListener('submit', function(event) {
+                        if (form.checkValidity() === false) {
+                          event.preventDefault();
+                          event.stopPropagation();
+                        }
+                        form.classList.add('was-validated');
+                      }, false);
+                    });
+                  }, false);
+                })();
+                </script>
+
+
+            </div>
+        </div>
+        <div class="row no-gutters" id="news">
+            <div class="col-lg-6" style="padding-top:70px;height:500px">
+                <h4>Notice/News</h4>
+                <ul class="list-group">
+                    <marquee direction="up" height="100%" scrollamount="5" onmouseover="this.stop();" onmouseout="this.start();">
+                        {% for notice in notice_list %}
+                        <li class="list-group-item">Date : <b>{{notice.n_date}}</b></li>
+                            <li class="list-group-item">
+                                <ul>
+                                    <li>{{notice.n_title}}</li>
+                                </ul>
+                            </li>
+
+                        {% endfor %}
+                    </marquee>
+                </ul>
+            </div>
+            <div class="col-lg-6" style="padding-top:70px;height:500px">
+                <h4>Events</h4>
+                <ul class="list-group">
+                    <marquee direction="up" height="100%" scrollamount="5" onmouseover="this.stop();" onmouseout="this.start();">
+                        {% for event in event_list %}
+                        <li class="list-group-item">Date : <b>{{event.e_date}}</b></li>
+                            <li class="list-group-item">
+                                <ul>
+                                    <li>{{event.e_title}}</li>
+                                </ul>
+                            </li>
+
+                        {% endfor %}
+                    </marquee>
+                </ul>
+            </div>
+
+        </div>
+    <div class="row no-gutters name_title" style="background:rgba(0, 0, 0, 0.6)">
+        <div class="col-lg-12" style="padding:1% 2% 0% 20%" ><h5>Copyright &copy; aseefcse0406</h5></div>
+    </div>
+    </div>
+</div>
+</body>
+</html>
