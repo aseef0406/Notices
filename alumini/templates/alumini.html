@@ -46,6 +46,7 @@
           </div>
       </div>
     </nav>
+    {% block content %}
     {% if username %}
     <div class="row no-gutters name_title" style="background-color:#6a4b81  ">
         <div class="col-lg-6" ><h3>Welcome, {{username}}</h3></div>
@@ -95,6 +96,7 @@
             <div class="col-lg-6" style="text-align:right"><h4><a href="{% url 'alumini_login' %}"> Login</a></h4></div>
         </div>
     {%endif%}
+    {%endblock%}
 </div>
 </body>
 </html>

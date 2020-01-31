@@ -9,4 +9,6 @@ urlpatterns=[
     path('home_login/', views.home_login,name="home_login"),
     path('alumini_logout/', views.aluminiLogout,name="alumini_logout"),
 
+    path('send_mail/', views.sendingMail),
+
 ]

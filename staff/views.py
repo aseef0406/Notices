@@ -3,6 +3,7 @@ from django.shortcuts import render, HttpResponseRedirect, HttpResponse, redirec
 from alumini.models import RegisterModel
 from django.contrib import messages
 from django.contrib.auth import authenticate,login,logout
+from .forms import Notices
 
 # Create your views here.
 
@@ -62,3 +63,20 @@ def logoutPage(request):
     return redirect('main_page')
 
 
+def Notice_Paste(request):
+    template = 'notice_creation.html'
+    if request.method == 'POST':
+        form =Notices(request.POST)
+        if form.is_valid():
+            return HttpResponse('thanks')
+
+    else:
+        form = Notices()
+
+    return render(request, template, {'form': form})
+
+def pastingNotices(request):
+    date=request.POST['n_date']
+    title=request.POST['n_title']
+    data=request.POST['n_data']
+    return HttpResponse(date+" "+title+" "+data)
